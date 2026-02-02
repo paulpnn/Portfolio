@@ -70,17 +70,42 @@
             position: relative;
             z-index: 10;
             padding: 2rem;
-            text-align: center;
             border-bottom: 1px solid rgba(55, 65, 81, 0.5);
             background: rgba(10, 14, 39, 0.8);
             backdrop-filter: blur(10px);
+        }
+
+        /* Container to hold Image + Text side by side */
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left; /* Text aligns left next to image */
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--color-work);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            flex-shrink: 0; /* Prevents image from shrinking */
+        }
+
+        .header-text {
+            flex-grow: 1;
+            max-width: 800px;
         }
 
         h1 {
             font-size: 3rem;
             font-weight: 700;
             letter-spacing: -1px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
             background: linear-gradient(135deg, var(--text-white), var(--color-work));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -92,15 +117,15 @@
             font-size: 1rem;
             color: var(--text-gray);
             text-transform: uppercase;
+            margin-bottom: 1rem;
         }
 
         .contact-info {
-            margin-top: 1rem;
             display: flex;
             gap: 1.5rem;
-            justify-content: center;
             flex-wrap: wrap;
             font-size: 0.9rem;
+            justify-content: flex-start; /* Aligns contact info to the left */
         }
 
         .contact-item {
@@ -336,6 +361,10 @@
             .map-legend { left: 10px; bottom: 10px; }
             .info-card { width: 100%; right: 0; bottom: 0; top: auto; transform: translateY(110%); max-height: 60%; }
             .info-card.active { transform: translateY(0); }
+
+            /* Header responsive adjustments */
+            .header-content { flex-direction: column; text-align: center; }
+            .contact-info { justify-content: center; }
         }
         
         /* Grid for skills */
@@ -357,14 +386,21 @@
     <div class="stars" id="stars"></div>
 
     <header>
-        <h1>Paul Peninon</h1>
-        <p class="subtitle">International Sport Administration Student</p>
-        <div class="contact-info">
-            <div class="contact-item">📧 <a href="mailto:peninon.paul@gmail.com">peninon.paul@gmail.com</a></div>
-            <div class="contact-item">📱 +33 6 01 85 89 33</div>
-            <div class="contact-item">📍 Lille, France</div>
-            <div class="contact-item">🔗 <a href="https://www.linkedin.com/in/paul-peninon-612a1a1b1/" target="_blank">LinkedIn</a></div>
-            <div class="contact-item">🌲 <a href="https://linktr.ee/peninon.paul" target="_blank">Linktree</a></div>
+        <div class="header-content">
+            <img src="profile.jpg" alt="Paul Peninon" class="profile-photo">
+            
+            <div class="header-text">
+                <h1>Paul Peninon</h1>
+                <p class="subtitle">International Sport Administration Student</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">📧 <a href="mailto:peninon.paul@gmail.com">peninon.paul@gmail.com</a></div>
+                    <div class="contact-item">📱 +33 6 01 85 89 33</div>
+                    <div class="contact-item">📍 Lille, France</div>
+                    <div class="contact-item">🔗 <a href="https://www.linkedin.com/in/paul-peninon-612a1a1b1/" target="_blank">LinkedIn</a></div>
+                    <div class="contact-item">🌲 <a href="https://linktr.ee/peninon.paul" target="_blank">Linktree</a></div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -689,4 +725,5 @@
 
     </script>
 </body>
+
 </html>

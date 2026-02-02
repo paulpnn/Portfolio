@@ -35,7 +35,7 @@
             min-height: 100vh;
         }
 
-        /* --- Background Animation (Drapeaux) --- */
+        /* --- OPTIMISATION 1: Animation plus légère --- */
         .stars {
             position: fixed;
             top: 0;
@@ -51,13 +51,16 @@
             width: 20px;
             height: auto;
             opacity: 0;
-            filter: grayscale(0.3) brightness(0.8);
-            animation: twinkle 4s infinite;
+            /* Suppression des filtres lourds (grayscale/brightness) pour la performance */
+            will-change: transform, opacity; /* Force l'utilisation du GPU */
+            transform: translateZ(0); /* Active l'accélération matérielle */
+            animation: twinkle 5s infinite ease-in-out; /* Animation un peu plus lente pour moins ramer */
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(0.6) rotate(-5deg); }
-            50% { opacity: 0.5; transform: scale(1) rotate(5deg); }
+            0% { opacity: 0; transform: scale(0.6) rotate(-5deg); }
+            50% { opacity: 0.6; transform: scale(1) rotate(5deg); } /* Opacité max réduite à 0.6 */
+            100% { opacity: 0; transform: scale(0.6) rotate(-5deg); }
         }
 
         /* --- Header --- */
@@ -66,8 +69,8 @@
             z-index: 10;
             padding: 2.5rem 2rem;
             border-bottom: 1px solid rgba(55, 65, 81, 0.5);
-            background: rgba(10, 14, 39, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 14, 39, 0.9); /* Moins de transparence = moins de calcul de flou */
+            backdrop-filter: blur(8px); /* Blur réduit pour gagner des FPS */
         }
 
         .header-content {
@@ -131,8 +134,8 @@
 
         .locations-sidebar {
             width: 280px;
-            background: rgba(10, 14, 39, 0.98);
-            backdrop-filter: blur(15px);
+            background: rgba(10, 14, 39, 0.95);
+            /* backdrop-filter retiré ici pour fluidifier le scroll de la liste */
             border-right: 1px solid var(--map-line);
             overflow-y: auto;
             z-index: 1002;
@@ -145,13 +148,16 @@
             text-transform: uppercase;
             color: var(--text-gray);
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(10, 14, 39, 1);
+            position: sticky; /* Garde le titre visible */
+            top: 0;
         }
 
         .location-item {
             padding: 1.2rem 1.5rem;
             cursor: pointer;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
+            transition: background 0.2s ease; /* Transition simplifiée */
         }
 
         .location-item:hover { background: rgba(59, 130, 246, 0.15); }
@@ -178,11 +184,12 @@
             max-height: 85%;
             overflow-y: auto;
             background: rgba(20, 25, 48, 0.95);
-            backdrop-filter: blur(25px);
+            /* Blur réduit */
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
             transform: translateX(120%);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Durée réduite */
             z-index: 1000;
             box-shadow: -15px 15px 40px rgba(0,0,0,0.7);
         }
@@ -216,7 +223,7 @@
             position: absolute;
             bottom: 25px;
             left: 305px;
-            background: rgba(10, 14, 39, 0.9);
+            background: rgba(10, 14, 39, 0.95);
             padding: 1rem 1.2rem;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -239,14 +246,15 @@
             height: 18px;
             background: currentColor;
             border-radius: 50%;
-            box-shadow: 0 0 15px currentColor;
+            /* Ombre simplifiée pour perf */
+            box-shadow: 0 0 10px currentColor; 
         }
         .marker-pulse::after {
             content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 100%; height: 100%; border-radius: 50%; border: 2px solid currentColor;
             animation: ripple 2.5s infinite;
         }
-        @keyframes ripple { 0% { width: 100%; height: 100%; opacity: 1; } 100% { width: 300%; height: 300%; opacity: 0; } }
+        @keyframes ripple { 0% { width: 100%; height: 100%; opacity: 1; } 100% { width: 250%; height: 250%; opacity: 0; } }
         .marker-work { color: var(--color-work); }
         .marker-edu { color: var(--color-edu); }
         .marker-visited { color: var(--color-visited); width: 10px; height: 10px; box-shadow: none; }
@@ -255,8 +263,8 @@
         /* Grid for skills */
         .content-section { max-width: 1200px; margin: 0 auto 5rem; padding: 0 2rem; }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
-        .card { background: rgba(26, 31, 58, 0.5); border: 1px solid rgba(96, 165, 250, 0.1); border-radius: 20px; padding: 2.5rem; transition: 0.4s; }
-        .card:hover { transform: translateY(-8px); border-color: var(--color-work); background: rgba(26, 31, 58, 0.8); }
+        .card { background: rgba(26, 31, 58, 0.6); border: 1px solid rgba(96, 165, 250, 0.1); border-radius: 20px; padding: 2.5rem; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--color-work); background: rgba(26, 31, 58, 0.85); }
         .card h2 { font-family: 'Space Mono', monospace; font-size: 1.1rem; color: var(--color-work); text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 2px; }
         .skill-item { margin-bottom: 1.5rem; }
         .skill-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; }
@@ -378,32 +386,42 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
-        // --- 1. Flags Animation ---
+        // --- 1. Flags Animation Optimized ---
+        // OPTIMIZATION: Reduced from 120 to 40 particles for performance
         const starsContainer = document.getElementById('stars');
         const myCountries = ['fr', 'lu', 'de', 'ca', 'us', 'jp', 'gb', 'tz', 'tn', 'es', 'it', 'gr', 'be', 'ie'];
         
-        for (let i = 0; i < 120; i++) {
+        for (let i = 0; i < 40; i++) {
             const flag = document.createElement('img');
             const country = myCountries[Math.floor(Math.random() * myCountries.length)];
             flag.className = 'star';
             flag.src = `https://flagcdn.com/w40/${country}.png`;
             flag.style.left = Math.random() * 100 + '%';
             flag.style.top = Math.random() * 100 + '%';
-            flag.style.animationDelay = Math.random() * 4 + 's';
-            flag.style.width = (12 + Math.random() * 15) + 'px';
+            // Increased delay slightly for smoother feel
+            flag.style.animationDelay = Math.random() * 5 + 's';
+            flag.style.width = (15 + Math.random() * 15) + 'px';
             starsContainer.appendChild(flag);
         }
 
-        // --- 2. Resume Data ---
+        // --- 2. Resume Data (Ordered) ---
         const experiences = [
-            { id: 1, title: "Summer Job - Production", company: "Decathlon (Van Rysel Factory)", type: "work", period: "June 2025 - Sept 2025", location: "Lille, France", lat: 50.5600, lng: 2.9800, desc: "Production of high-end bikes for Van Rysel in the French factory.", tasks: ["Production of high-end bikes", "Quality control", "Just-in-time factory work"], image: "Van Rysel.jpg" },
+            // 1. University of Lille
             { id: 2, title: "Master International Sport Administration", company: "University of Lille", type: "edu", period: "2024 - 2026", location: "Lille, France", lat: 50.6800, lng: 3.1400, desc: "Devising strategies, developing projects and managing resources in sports and leisure.", tasks: ["Sports marketing", "Event management", "Sports law"], image: "Staps.jpg" },
-            { id: 3, title: "Communication & Assistant CEO", company: "Handball Club Diddeleng", type: "work", period: "April 2025 - June 2025", location: "Dudelange, Luxembourg", lat: 49.4806, lng: 6.0842, desc: "Communication and Assistant CEO internship.", tasks: ["Internal club strategy", "European Youth Cup", "Wheelchair handball team"], image: "HBD.jpg" },
-            { id: 4, title: "Voluntary Community Service", company: "Unis Cité", type: "work", period: "Sept 2023 - June 2024", location: "Bordeaux, France", lat: 44.7900, lng: -0.6200, desc: "8-month volunteering mission for high school students.", tasks: ["Film discussion sessions", "Debates on social issues", "Mentoring"], image: "Community service.png" },
-            { id: 5, title: "Work-study Communication", company: "Médical-Thiry", type: "work", period: "Sept 2022 - Sept 2023", location: "Martignas-sur-Jalle, France", lat: 44.8400, lng: -0.7700, desc: "12-month Work-study in e-commerce and communication.", tasks: ["Social network communication", "E-commerce management", "Article writing & SEO"], image: "mt.jpg" },
+            // 2. Okanagan
+            { id: 8, title: "International Semester", company: "Okanagan College", type: "edu", period: "2019-2023", location: "Kelowna, Canada", lat: 49.8880, lng: -119.4960, desc: "Academic exchange semester in Canada.", tasks: ["Cultural immersion", "Intensive English", "Business Management"], image: "OC.jpg" },
+            // 3. INSEEC
             { id: 6, title: "BBA INSEEC", company: "INSEEC Business School", type: "edu", period: "2019 - 2023", location: "Bordeaux, France", lat: 44.8900, lng: -0.5400, desc: "International Business School emphasizing learning by doing.", tasks: ["International Marketing", "Creation Challenge Project", "Sports Office"], image: "BBA.jpg" },
-            { id: 7, title: "Marketing Internship", company: "Steel Vintage Bikes", type: "work", period: "Jan 2021 - Mar 2021", location: "Berlin, Germany", lat: 52.5200, lng: 13.4050, desc: "3 months communications & marketing internship in English & German.", tasks: ["Social media (+170k on IG)", "Marketing strategy", "Product launch", "SEO"], image: "SVB.jpg" },
-            { id: 8, title: "International Semester", company: "Okanagan College", type: "edu", period: "2019-2023", location: "Kelowna, Canada", lat: 49.8880, lng: -119.4960, desc: "Academic exchange semester in Canada.", tasks: ["Cultural immersion", "Intensive English", "Business Management"], image: "OC.jpg" }
+            // 4. Decathlon
+            { id: 1, title: "Summer Job - Production", company: "Decathlon (Van Rysel Factory)", type: "work", period: "June 2025 - Sept 2025", location: "Lille, France", lat: 50.5600, lng: 2.9800, desc: "Production of high-end bikes for Van Rysel in the French factory.", tasks: ["Production of high-end bikes", "Quality control", "Just-in-time factory work"], image: "Van Rysel.jpg" },
+            // 5. Handball
+            { id: 3, title: "Communication & Assistant CEO", company: "Handball Club Diddeleng", type: "work", period: "April 2025 - June 2025", location: "Dudelange, Luxembourg", lat: 49.4806, lng: 6.0842, desc: "Communication and Assistant CEO internship.", tasks: ["Internal club strategy", "European Youth Cup", "Wheelchair handball team"], image: "HBD.jpg" },
+            // 6. Unis Cité
+            { id: 4, title: "Voluntary Community Service", company: "Unis Cité", type: "work", period: "Sept 2023 - June 2024", location: "Bordeaux, France", lat: 44.7900, lng: -0.6200, desc: "8-month volunteering mission for high school students.", tasks: ["Film discussion sessions", "Debates on social issues", "Mentoring"], image: "Community service.png" },
+            // 7. Medical Thiry
+            { id: 5, title: "Work-study Communication", company: "Médical-Thiry", type: "work", period: "Sept 2022 - Sept 2023", location: "Martignas-sur-Jalle, France", lat: 44.8400, lng: -0.7700, desc: "12-month Work-study in e-commerce and communication.", tasks: ["Social network communication", "E-commerce management", "Article writing & SEO"], image: "mt.jpg" },
+            // 8. Steel Vintage Bikes
+            { id: 7, title: "Marketing Internship", company: "Steel Vintage Bikes", type: "work", period: "Jan 2021 - Mar 2021", location: "Berlin, Germany", lat: 52.5200, lng: 13.4050, desc: "3 months communications & marketing internship in English & German.", tasks: ["Social media (+170k on IG)", "Marketing strategy", "Product launch", "SEO"], image: "SVB.jpg" }
         ];
 
         const visited = [
@@ -504,4 +522,3 @@
     </script>
 </body>
 </html>
-

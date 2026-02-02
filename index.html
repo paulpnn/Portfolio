@@ -103,7 +103,14 @@
             font-size: 0.9rem;
         }
 
-        .contact-item a { color: var(--color-work); text-decoration: none; }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-item a { color: var(--color-work); text-decoration: none; transition: color 0.3s; }
+        .contact-item a:hover { color: var(--text-white); text-decoration: underline; }
 
         /* --- Map Container --- */
         .map-wrapper {
@@ -120,7 +127,7 @@
             display: flex; /* For sidebar layout */
         }
 
-        /* --- SIDEBAR MENU (NEW) --- */
+        /* --- SIDEBAR MENU --- */
         .locations-sidebar {
             width: 250px;
             background: rgba(10, 14, 39, 0.95);
@@ -356,6 +363,8 @@
             <div class="contact-item">📧 <a href="mailto:peninon.paul@gmail.com">peninon.paul@gmail.com</a></div>
             <div class="contact-item">📱 +33 6 01 85 89 33</div>
             <div class="contact-item">📍 Lille, France</div>
+            <div class="contact-item">🔗 <a href="https://www.linkedin.com/in/paul-peninon-612a1a1b1/" target="_blank">LinkedIn</a></div>
+            <div class="contact-item">🌲 <a href="https://linktr.ee/peninon.paul" target="_blank">Linktree</a></div>
         </div>
     </header>
 
@@ -430,7 +439,7 @@
                     </li>
                     <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
                         <span style="font-size: 1.5rem;">🎮</span> 
-                        <div><strong>Esport</strong><br><span style="color: var(--text-gray);">Top 500 Europe - Teamfight Tactics</span></div>
+                        <div><strong>Esport Strategy</strong><br><span style="color: var(--text-gray);">Top 500 Europe - Teamfight Tactics</span></div>
                     </li>
                     <li style="display: flex; align-items: center; gap: 10px;">
                         <span style="font-size: 1.5rem;">✈️</span> 
@@ -456,7 +465,6 @@
         }
 
         // --- 2. Resume Data ---
-        // COORDINATES UPDATED TO SEPARATE POINTS EVEN MORE
         const experiences = [
             {
                 id: 1,
@@ -465,7 +473,7 @@
                 type: "work",
                 period: "June 2025 - Sept 2025",
                 location: "Lille, France",
-                // Moved further South-West
+                // Coordinates kept spread out as requested
                 lat: 50.5600, lng: 2.9800, 
                 desc: "Production of high-end bikes for Van Rysel in the French factory.",
                 tasks: ["Production of high-end bikes", "Quality control", "Just-in-time factory work"],
@@ -478,7 +486,7 @@
                 type: "edu",
                 period: "2024 - 2026",
                 location: "Lille, France",
-                // Moved further North-East
+                // Coordinates kept spread out as requested
                 lat: 50.6800, lng: 3.1400, 
                 desc: "Devising strategies, developing projects and managing resources in sports and leisure.",
                 tasks: ["Sports marketing", "Event management", "Sports law"],
@@ -494,7 +502,7 @@
                 lat: 49.4806, lng: 6.0842,
                 desc: "Communication and Assistant CEO internship.",
                 tasks: ["Creation of an internal club strategy", "Organisation of the European Youth Cup", "Creation of a wheelchair handball team"],
-                image: "HBD.jpg"
+                image: "Handball Dudelange.jpg"
             },
             {
                 id: 4,
@@ -503,11 +511,11 @@
                 type: "work",
                 period: "Sept 2023 - June 2024",
                 location: "Bordeaux, France",
-                // Moved further South
+                // Coordinates kept spread out as requested
                 lat: 44.7900, lng: -0.6200,
                 desc: "8-month volunteering mission for high school students.",
                 tasks: ["Film discussion sessions with students", "Debates on social issues", "Mentoring"],
-                image: "Community service.png"
+                image: "Community service.jpg"
             },
             {
                 id: 5,
@@ -528,7 +536,7 @@
                 type: "edu",
                 period: "2019 - 2023",
                 location: "Bordeaux, France",
-                // Moved further North-East
+                // Coordinates kept spread out as requested
                 lat: 44.8900, lng: -0.5400,
                 desc: "International Business School emphasizing learning by doing.",
                 tasks: ["International Marketing", "Creation Challenge Project", "Sports Office"],
@@ -544,7 +552,7 @@
                 lat: 52.5200, lng: 13.4050,
                 desc: "3 months communications & marketing internship in English & German.",
                 tasks: ["Social media (+170k on Instagram)", "Marketing strategy creation", "Launch of a new product", "SEO"],
-                image: "SVB.jpg"
+                image: "Steelvintagebikes.jpg"
             },
             {
                 id: 8,
@@ -556,7 +564,7 @@
                 lat: 49.8880, lng: -119.4960,
                 desc: "Academic exchange semester in Canada.",
                 tasks: ["Cultural immersion", "Intensive English", "North American Business Management"],
-                image: "OC.jpg"
+                image: "Okanagan college2.jpg"
             }
         ];
 

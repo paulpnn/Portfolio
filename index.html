@@ -48,7 +48,7 @@
 
         .star {
             position: absolute;
-            width: 20px; /* Taille des miniatures */
+            width: 20px;
             height: auto;
             opacity: 0;
             filter: grayscale(0.3) brightness(0.8);
@@ -110,6 +110,7 @@
         }
 
         .contact-info { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; }
+        .contact-item { display: flex; align-items: center; gap: 5px; }
         .contact-item a { color: var(--color-work); text-decoration: none; transition: 0.3s; }
         .contact-item a:hover { color: var(--text-white); text-decoration: underline; }
 
@@ -290,7 +291,9 @@
                 <div class="contact-info">
                     <div class="contact-item">📧 <a href="mailto:peninon.paul@gmail.com">peninon.paul@gmail.com</a></div>
                     <div class="contact-item">📱 +33 6 01 85 89 33</div>
-                    <div class="contact-item">📍 Lille, France</div>
+                    
+                    <div class="contact-item">📄 <a href="Paul-Peninon-Resume.pdf" target="_blank" download>Download my CV</a></div>
+                    
                     <div class="contact-item">🔗 <a href="https://www.linkedin.com/in/paul-peninon-612a1a1b1/" target="_blank">LinkedIn</a></div>
                     <div class="contact-item">🌲 <a href="https://linktr.ee/peninon.paul" target="_blank">Linktree</a></div>
                 </div>
@@ -375,9 +378,8 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
-        // --- 1. Flags Animation (Modified from Stars) ---
+        // --- 1. Flags Animation ---
         const starsContainer = document.getElementById('stars');
-        // List of country codes from your experiences and visited list
         const myCountries = ['fr', 'lu', 'de', 'ca', 'us', 'jp', 'gb', 'tz', 'tn', 'es', 'it', 'gr', 'be', 'ie'];
         
         for (let i = 0; i < 120; i++) {
@@ -395,7 +397,7 @@
         // --- 2. Resume Data ---
         const experiences = [
             { id: 1, title: "Summer Job - Production", company: "Decathlon (Van Rysel Factory)", type: "work", period: "June 2025 - Sept 2025", location: "Lille, France", lat: 50.5600, lng: 2.9800, desc: "Production of high-end bikes for Van Rysel in the French factory.", tasks: ["Production of high-end bikes", "Quality control", "Just-in-time factory work"], image: "Van Rysel.jpg" },
-            { id: 2, title: "Master Sport Administration", company: "University of Lille", type: "edu", period: "2024 - 2026", location: "Lille, France", lat: 50.6800, lng: 3.1400, desc: "Devising strategies, developing projects and managing resources in sports and leisure.", tasks: ["Sports marketing", "Event management", "Sports law"], image: "" },
+            { id: 2, title: "Master International Sport Administration", company: "University of Lille", type: "edu", period: "2024 - 2026", location: "Lille, France", lat: 50.6800, lng: 3.1400, desc: "Devising strategies, developing projects and managing resources in sports and leisure.", tasks: ["Sports marketing", "Event management", "Sports law"], image: "" },
             { id: 3, title: "Communication & Assistant CEO", company: "Handball Club Diddeleng", type: "work", period: "April 2025 - June 2025", location: "Dudelange, Luxembourg", lat: 49.4806, lng: 6.0842, desc: "Communication and Assistant CEO internship.", tasks: ["Internal club strategy", "European Youth Cup", "Wheelchair handball team"], image: "HBD.jpg" },
             { id: 4, title: "Voluntary Community Service", company: "Unis Cité", type: "work", period: "Sept 2023 - June 2024", location: "Bordeaux, France", lat: 44.7900, lng: -0.6200, desc: "8-month volunteering mission for high school students.", tasks: ["Film discussion sessions", "Debates on social issues", "Mentoring"], image: "Community service.png" },
             { id: 5, title: "Work-study Communication", company: "Médical-Thiry", type: "work", period: "Sept 2022 - Sept 2023", location: "Martignas-sur-Jalle, France", lat: 44.8400, lng: -0.7700, desc: "12-month Work-study in e-commerce and communication.", tasks: ["Social network communication", "E-commerce management", "Article writing & SEO"], image: "" },
@@ -412,10 +414,10 @@
             {lat: 50.8503, lng: 4.3517, name: "Belgium"}, {lat: 53.3498, lng: -6.2603, name: "Ireland"}
         ];
 
-        // --- 3. Initialize Map (Modified: Zoom Out Max) ---
+        // --- 3. Initialize Map ---
         const map = L.map('map', {
             center: [25, 0], 
-            zoom: 2, // Max Zoom out on start
+            zoom: 2,
             minZoom: 2,
             zoomControl: true,
             scrollWheelZoom: false,

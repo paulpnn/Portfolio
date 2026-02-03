@@ -19,7 +19,7 @@
             --bg-dark: #0a0e27;
             --bg-secondary: #1a1f3a;
             --color-work: #3b82f6;      
-            --color-edu: #fbbf24;       
+            --color-edu: #fbbf24;        
             --color-visited: #9ca3af;   
             --text-light: #e5e7eb;
             --text-gray: #9ca3af;
@@ -405,23 +405,170 @@
         }
 
         // --- 2. Resume Data (Ordered) ---
+        // UPDATED: Fleshed out descriptions and tasks for a professional portfolio look
         const experiences = [
             // 1. University of Lille
-            { id: 2, title: "Master International Sport Administration", company: "University of Lille", type: "edu", period: "2024 - 2026", location: "Lille, France", lat: 50.6800, lng: 3.1400, desc: "Devising strategies, developing projects and managing resources in sports and leisure.", tasks: ["Sports marketing", "Event management", "Sports law"], image: "Staps.jpg" },
+            { 
+                id: 2, 
+                
+                title: "Master International Sport Administration", 
+                company: "University of Lille", 
+                type: "edu", 
+                period: "2024 - 2026", 
+                location: "Lille, France", 
+                lat: 50.6800, 
+                lng: 3.1400, 
+                desc: "Specialized Master's program focusing on the global governance of sports. This curriculum integrates high-level strategic management, international law, and the economic challenges of the modern sports industry.", 
+                tasks: [
+                    "Strategic management of international sports organizations and major events",
+                    "In-depth analysis of Sports Law, governance, and public policy frameworks",
+                    "Consultancy-style project development for leisure and professional sports industries",
+                    "Advanced international sports marketing, sponsorship, and fan engagement strategies",
+                    "Economic impact assessment of territorial sports development projects"
+                ], 
+                image: "Staps.jpg" 
+            },
             // 2. Okanagan
-            { id: 8, title: "International Semester", company: "Okanagan College", type: "edu", period: "2019-2023", location: "Kelowna, Canada", lat: 49.8880, lng: -119.4960, desc: "Academic exchange semester in Canada.", tasks: ["Cultural immersion", "Intensive English", "Business Management"], image: "OC.jpg" },
+            { 
+                id: 8, 
+                title: "International Semester", 
+                company: "Okanagan College", 
+                type: "edu", 
+                period: "2019-2023", 
+                location: "Kelowna, Canada", 
+                lat: 49.8880, 
+                lng: -119.4960, 
+                desc: "Academic exchange focused on North American business models. This experience provided deep cultural immersion and a comprehensive understanding of the Canadian business ecosystem.", 
+                tasks: [
+                    "Advanced courses in Business Administration, Consumer Behavior, and Digital Marketing",
+                    "Full professional and linguistic immersion in an Anglophone academic environment",
+                    "Cross-cultural collaboration through multi-disciplinary team projects",
+                    "Comparative analysis of North American vs. European marketing and consumer trends",
+                    "Development of adaptability and international networking skills"
+                ], 
+                image: "OC.jpg" 
+            },
             // 3. INSEEC
-            { id: 6, title: "BBA INSEEC", company: "INSEEC Business School", type: "edu", period: "2019 - 2023", location: "Bordeaux, France", lat: 44.8900, lng: -0.5400, desc: "International Business School emphasizing learning by doing.", tasks: ["International Marketing", "Creation Challenge Project", "Sports Office"], image: "BBA.jpg" },
+            { 
+                id: 6, 
+                title: "BBA INSEEC", 
+                company: "INSEEC Business School", 
+                type: "edu", 
+                period: "2019 - 2023", 
+                location: "Bordeaux, France", 
+                lat: 44.8900, 
+                lng: -0.5400, 
+                desc: "Four-year Bachelor of Business Administration providing a robust foundation in international commerce, finance, and management through a 'learning by doing' pedagogical approach.", 
+                tasks: [
+                    "Specialization in International Marketing and Global Brand Strategy",
+                    "Creation of a comprehensive Start-up Business Plan (Finance, HR, and Marketing)",
+                    "Executive member of the Sports Bureau (BDS): budgeting and internal promotion",
+                    "Full-scale organization of student sports tournaments and community events",
+                    "Market research and competitive benchmarking for various business sectors"
+                ], 
+                image: "BBA.jpg" 
+            },
             // 4. Decathlon
-            { id: 1, title: "Summer Job - Production", company: "Decathlon (Van Rysel Factory)", type: "work", period: "June 2025 - Sept 2025", location: "Lille, France", lat: 50.5600, lng: 2.9800, desc: "Production of high-end bikes for Van Rysel in the French factory.", tasks: ["Production of high-end bikes", "Quality control", "Just-in-time factory work"], image: "Van Rysel.jpg" },
+            { 
+                id: 1, 
+                title: "Summer Job - Production", 
+                company: "Decathlon (Van Rysel Factory)", 
+                type: "work", 
+                period: "June 2025 - Sept 2025", 
+                location: "Lille, France", 
+                lat: 50.5600, 
+                lng: 2.9800, 
+                desc: "Technical role within the Van Rysel manufacturing unit (B'Twin Village), contributing to the production chain of high-performance road bikes for professional and amateur athletes.", 
+                tasks: [
+                    "Precision assembly of high-end Van Rysel road bikes following technical blueprints",
+                    "Rigorous quality control and compliance checks to meet international safety standards",
+                    "Application of LEAN Management principles to optimize production flow and efficiency",
+                    "Management of technical workstations and inventory replenishment for assembly lines",
+                    "Collaboration with the R&D team to provide feedback on assembly ergonomics"
+                ], 
+                image: "Van Rysel.jpg" 
+            },
             // 5. Handball
-            { id: 3, title: "Communication & Assistant CEO", company: "Handball Club Diddeleng", type: "work", period: "April 2025 - June 2025", location: "Dudelange, Luxembourg", lat: 49.4806, lng: 6.0842, desc: "Communication and Assistant CEO internship.", tasks: ["Internal club strategy", "European Youth Cup", "Wheelchair handball team"], image: "HBD.jpg" },
+            { 
+                id: 3, 
+                title: "Communication & Assistant CEO", 
+                company: "Handball Club Diddeleng", 
+                type: "work", 
+                period: "April 2025 - June 2025", 
+                location: "Dudelange, Luxembourg", 
+                lat: 49.4806, 
+                lng: 6.0842, 
+                desc: "Strategic support role to the club's leadership, focusing on professionalizing the club's image and expanding its inclusive sports initiatives at a national and European level.", 
+                tasks: [
+                    "Development and execution of the club's 2025 strategic growth roadmap",
+                    "Full logistics management for the 'European Youth Cup' (accommodation, transport, schedules)",
+                    "Strategic communication and visibility plan for the Wheelchair Handball section",
+                    "B2B partner activation and development of new sponsorship packages",
+                    "Social media management and creation of digital content for matchday events"
+                ], 
+                image: "HBD.jpg" 
+            },
             // 6. Unis Cité
-            { id: 4, title: "Voluntary Community Service", company: "Unis Cité", type: "work", period: "Sept 2023 - June 2024", location: "Bordeaux, France", lat: 44.7900, lng: -0.6200, desc: "8-month volunteering mission for high school students.", tasks: ["Film discussion sessions", "Debates on social issues", "Mentoring"], image: "Community service.png" },
+            { 
+                id: 4, 
+                title: "Voluntary Community Service", 
+                company: "Unis Cité", 
+                type: "work", 
+                period: "Sept 2023 - June 2024", 
+                location: "Bordeaux, France", 
+                lat: 44.7900, 
+                lng: -0.6200, 
+                desc: "Civic service mission 'Cinema & Citizenship' (CNC partnership). Using cinema as a medium to foster critical thinking and social dialogue among young people in educational priority areas.", 
+                tasks: [
+                    "Planning and facilitating 'Ciné-Débat' sessions for over 500 high school students",
+                    "Designing interactive workshops on sensitive societal issues (ecology, diversity, ethics)",
+                    "Mentoring youth on civic engagement and encouraging social responsibility",
+                    "Public speaking and moderation of large groups to encourage inclusive dialogue",
+                    "Coordinating logistics for national events and inter-associative partnerships"
+                ], 
+                image: "Community service.png" 
+            },
             // 7. Medical Thiry
-            { id: 5, title: "Work-study Communication", company: "Médical-Thiry", type: "work", period: "Sept 2022 - Sept 2023", location: "Martignas-sur-Jalle, France", lat: 44.8400, lng: -0.7700, desc: "12-month Work-study in e-commerce and communication.", tasks: ["Social network communication", "E-commerce management", "Article writing & SEO"], image: "mt.jpg" },
+            { 
+                id: 5, 
+                title: "Work-study Communication", 
+                company: "Médical-Thiry", 
+                type: "work", 
+                period: "Sept 2022 - Sept 2023", 
+                location: "Martignas-sur-Jalle, France", 
+                lat: 44.8400, 
+                lng: -0.7700, 
+                desc: "Year-long work-study contract managing the 360° digital strategy for a leader in medical equipment distribution, balancing B2B professional needs with B2C customer service.", 
+                tasks: [
+                    "Comprehensive Social Media Management and Community building across all platforms",
+                    "Daily management of the PrestaShop e-commerce platform (product updates, UX/UI)",
+                    "Content strategy: SEO-optimized blog writing and technical product descriptions",
+                    "Design and deployment of monthly newsletters and targeted Google Ads campaigns",
+                    "Performance tracking and data analysis of digital marketing KPIs"
+                ], 
+                image: "mt.jpg" 
+            },
             // 8. Steel Vintage Bikes
-            { id: 7, title: "Marketing Internship", company: "Steel Vintage Bikes", type: "work", period: "Jan 2021 - Mar 2021", location: "Berlin, Germany", lat: 52.5200, lng: 13.4050, desc: "3 months communications & marketing internship in English & German.", tasks: ["Social media (+170k on IG)", "Marketing strategy", "Product launch", "SEO"], image: "SVB.jpg" }
+            { 
+                id: 7, 
+                title: "Marketing Internship", 
+                company: "Steel Vintage Bikes", 
+                type: "work", 
+                period: "Jan 2021 - Mar 2021", 
+                location: "Berlin, Germany", 
+                lat: 52.5200, 
+                lng: 13.4050, 
+                desc: "International marketing role in a high-growth cycling company in Berlin. Focused on building brand loyalty within the global vintage cycling community.", 
+                tasks: [
+                    "Daily engagement for a global community of +170k followers on Instagram",
+                    "Co-development of editorial calendars and visual content for international launches",
+                    "Assisting in the launch of new apparel collections and limited edition bicycle builds",
+                    "SEO copywriting and translation of marketing materials (English and German)",
+                    "Monitoring of market trends in the niche luxury and vintage cycling industry"
+                ],
+                image: "SVB.jpg"
+           
+            }
         ];
 
         const visited = [
@@ -522,5 +669,3 @@
     </script>
 </body>
 </html>
-
-

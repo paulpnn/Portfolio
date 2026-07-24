@@ -35,7 +35,6 @@
             min-height: 100vh;
         }
 
-        /* --- OPTIMISATION 1: Animation plus légère --- */
         .stars {
             position: fixed;
             top: 0;
@@ -51,26 +50,24 @@
             width: 20px;
             height: auto;
             opacity: 0;
-            /* Suppression des filtres lourds (grayscale/brightness) pour la performance */
-            will-change: transform, opacity; /* Force l'utilisation du GPU */
-            transform: translateZ(0); /* Active l'accélération matérielle */
-            animation: twinkle 5s infinite ease-in-out; /* Animation un peu plus lente pour moins ramer */
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            animation: twinkle 5s infinite ease-in-out;
         }
 
         @keyframes twinkle {
             0% { opacity: 0; transform: scale(0.6) rotate(-5deg); }
-            50% { opacity: 0.6; transform: scale(1) rotate(5deg); } /* Opacité max réduite à 0.6 */
+            50% { opacity: 0.6; transform: scale(1) rotate(5deg); }
             100% { opacity: 0; transform: scale(0.6) rotate(-5deg); }
         }
 
-        /* --- Header --- */
         header {
             position: relative;
             z-index: 10;
             padding: 2.5rem 2rem;
             border-bottom: 1px solid rgba(55, 65, 81, 0.5);
-            background: rgba(10, 14, 39, 0.9); /* Moins de transparence = moins de calcul de flou */
-            backdrop-filter: blur(8px); /* Blur réduit pour gagner des FPS */
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(8px);
         }
 
         .header-content {
@@ -117,7 +114,6 @@
         .contact-item a { color: var(--color-work); text-decoration: none; transition: 0.3s; }
         .contact-item a:hover { color: var(--text-white); text-decoration: underline; }
 
-        /* --- Map Container --- */
         .map-wrapper {
             position: relative;
             max-width: 1400px;
@@ -135,7 +131,6 @@
         .locations-sidebar {
             width: 280px;
             background: rgba(10, 14, 39, 0.95);
-            /* backdrop-filter retiré ici pour fluidifier le scroll de la liste */
             border-right: 1px solid var(--map-line);
             overflow-y: auto;
             z-index: 1002;
@@ -149,7 +144,7 @@
             color: var(--text-gray);
             border-bottom: 1px solid rgba(255,255,255,0.1);
             background: rgba(10, 14, 39, 1);
-            position: sticky; /* Garde le titre visible */
+            position: sticky;
             top: 0;
         }
 
@@ -157,7 +152,7 @@
             padding: 1.2rem 1.5rem;
             cursor: pointer;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: background 0.2s ease; /* Transition simplifiée */
+            transition: background 0.2s ease;
         }
 
         .location-item:hover { background: rgba(59, 130, 246, 0.15); }
@@ -174,7 +169,6 @@
 
         #map { flex-grow: 1; height: 100%; background: #0a0e27; }
 
-        /* --- Info Card --- */
         .info-card {
             position: absolute;
             top: 25px;
@@ -184,12 +178,11 @@
             max-height: 85%;
             overflow-y: auto;
             background: rgba(20, 25, 48, 0.95);
-            /* Blur réduit */
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
             transform: translateX(120%);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Durée réduite */
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 1000;
             box-shadow: -15px 15px 40px rgba(0,0,0,0.7);
         }
@@ -218,7 +211,6 @@
             font-size: 1.2rem;
         }
 
-        /* --- Map Legend --- */
         .map-legend {
             position: absolute;
             bottom: 25px;
@@ -238,7 +230,6 @@
         .dot.work { background: var(--color-work); }
         .dot.edu { background: var(--color-edu); }
 
-        /* Custom Markers */
         .custom-marker-icon { background: transparent; border: none; }
         .marker-pulse {
             position: relative;
@@ -246,7 +237,6 @@
             height: 18px;
             background: currentColor;
             border-radius: 50%;
-            /* Ombre simplifiée pour perf */
             box-shadow: 0 0 10px currentColor; 
         }
         .marker-pulse::after {
@@ -260,7 +250,6 @@
         .marker-visited { color: var(--color-visited); width: 10px; height: 10px; box-shadow: none; }
         .marker-visited::after { display: none; }
 
-        /* Grid for skills */
         .content-section { max-width: 1200px; margin: 0 auto 5rem; padding: 0 2rem; }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
         .card { background: rgba(26, 31, 58, 0.6); border: 1px solid rgba(96, 165, 250, 0.1); border-radius: 20px; padding: 2.5rem; transition: transform 0.3s; }
@@ -368,7 +357,7 @@
                 <ul style="list-style: none;">
                     <li style="margin-bottom: 1.2rem; display: flex; align-items: center; gap: 15px;">
                         <span style="font-size: 1.5rem;">🏀</span> 
-                        <div><strong>Sports</strong><br><span style="color: var(--text-gray);">Basketball & Tennis</span></div>
+                        <div><strong>Sports</strong><br><span style="color: var(--text-gray);">Mainly basketball and tennis, but interested in all sports</span></div>
                     </li>
                     <li style="margin-bottom: 1.2rem; display: flex; align-items: center; gap: 15px;">
                         <span style="font-size: 1.5rem;">🎮</span> 
@@ -387,7 +376,6 @@
 
     <script>
         // --- 1. Flags Animation Optimized ---
-        // OPTIMIZATION: Reduced from 120 to 40 particles for performance
         const starsContainer = document.getElementById('stars');
         const myCountries = ['fr', 'lu', 'de', 'ca', 'us', 'jp', 'gb', 'tz', 'tn', 'es', 'it', 'gr', 'be', 'ie'];
         
@@ -398,19 +386,36 @@
             flag.src = `https://flagcdn.com/w40/${country}.png`;
             flag.style.left = Math.random() * 100 + '%';
             flag.style.top = Math.random() * 100 + '%';
-            // Increased delay slightly for smoother feel
             flag.style.animationDelay = Math.random() * 5 + 's';
             flag.style.width = (15 + Math.random() * 15) + 'px';
             starsContainer.appendChild(flag);
         }
 
-        // --- 2. Resume Data (Ordered) ---
-        // UPDATED: Fleshed out descriptions and tasks for a professional portfolio look
+        // --- 2. Resume Data (Ordered, most recent first) ---
         const experiences = [
+            // 0. LHF (current internship)
+            {
+                id: 9,
+                title: "High-Level Sports & Communication Internship",
+                company: "Ligue Handisport Francophone (LHF)",
+                type: "work",
+                period: "May 2026 - Sept 2026",
+                location: "Charleroi, Belgium",
+                lat: 50.4108,
+                lng: 4.4446,
+                desc: "Dual-focus internship spanning high-level adaptive sport development and organizational communications for the French-speaking Belgian handisport federation.",
+                tasks: [
+                    "High-level detection: organizing recruitment/talent-detection events, training camps, and guiding athletes toward the appropriate pathway ('Athlètes en vue!')",
+                    "Support for strategic analysis of the League's high-level sports management, contributing to the 2024-2032 strategic plan",
+                    "Internal/external communication and content production: website, social media, the 'Handisport Media Library', and the '80 Years of Goalball' project",
+                    "Improving handisport.be accessibility and analyzing site traffic",
+                    "Drafting formal correspondence for sponsorship outreach and event coordination"
+                ],
+                image: "LHF.jpg"
+            },
             // 1. University of Lille
             { 
                 id: 2, 
-                
                 title: "Master International Sport Administration", 
                 company: "University of Lille", 
                 type: "edu", 
@@ -424,7 +429,7 @@
                     "In-depth analysis of Sports Law, governance, and public policy frameworks",
                     "Consultancy-style project development for leisure and professional sports industries",
                     "Advanced international sports marketing, sponsorship, and fan engagement strategies",
-                    "Economic impact assessment of territorial sports development projects"
+                    "Thesis on the management of environmental issues in sports facilities during games"
                 ], 
                 image: "Staps.jpg" 
             },
@@ -471,14 +476,14 @@
             // 4. Decathlon
             { 
                 id: 1, 
-                title: "Summer Job - Production", 
+                title: "Production Operator", 
                 company: "Decathlon (Van Rysel Factory)", 
                 type: "work", 
                 period: "June 2025 - Sept 2025", 
                 location: "Lille, France", 
                 lat: 50.5600, 
                 lng: 2.9800, 
-                desc: "Technical role within the Van Rysel manufacturing unit (B'Twin Village), contributing to the production chain of high-performance road bikes for professional and amateur athletes.", 
+                desc: "Summer job on the high-end Van Rysel manufacturing line, contributing to the production chain of high-performance road bikes for professional and amateur athletes.", 
                 tasks: [
                     "Precision assembly of high-end Van Rysel road bikes following technical blueprints",
                     "Rigorous quality control and compliance checks to meet international safety standards",
@@ -491,7 +496,7 @@
             // 5. Handball
             { 
                 id: 3, 
-                title: "Communication & Assistant CEO", 
+                title: "CEO Assistant & Communication Internship", 
                 company: "Handball Club Diddeleng", 
                 type: "work", 
                 period: "April 2025 - June 2025", 
@@ -500,9 +505,9 @@
                 lng: 6.0842, 
                 desc: "Strategic support role to the club's leadership, focusing on professionalizing the club's image and expanding its inclusive sports initiatives at a national and European level.", 
                 tasks: [
-                    "Development and execution of the club's 2025 strategic growth roadmap",
-                    "Full logistics management for the 'European Youth Cup' (accommodation, transport, schedules)",
-                    "Strategic communication and visibility plan for the Wheelchair Handball section",
+                    "Development of a growth strategy for the club and complete organization of the Youth Cup",
+                    "Full logistics management for the European Youth Cup (accommodation, transport, schedules)",
+                    "Creation and structuring of a wheelchair handball team, in connection with para-sports challenges",
                     "B2B partner activation and development of new sponsorship packages",
                     "Social media management and creation of digital content for matchday events"
                 ], 
@@ -511,7 +516,7 @@
             // 6. Unis Cité
             { 
                 id: 4, 
-                title: "Voluntary Community Service", 
+                title: "Civic Service Volunteer", 
                 company: "Unis Cité", 
                 type: "work", 
                 period: "Sept 2023 - June 2024", 
@@ -520,7 +525,7 @@
                 lng: -0.6200, 
                 desc: "Civic service mission 'Cinema & Citizenship' (CNC partnership). Using cinema as a medium to foster critical thinking and social dialogue among young people in educational priority areas.", 
                 tasks: [
-                    "Planning and facilitating 'Ciné-Débat' sessions for over 500 high school students",
+                    "Planning and facilitating 'Ciné-Débat' sessions for high school students",
                     "Designing interactive workshops on sensitive societal issues (ecology, diversity, ethics)",
                     "Mentoring youth on civic engagement and encouraging social responsibility",
                     "Public speaking and moderation of large groups to encourage inclusive dialogue",
@@ -531,7 +536,7 @@
             // 7. Medical Thiry
             { 
                 id: 5, 
-                title: "Work-study Communication", 
+                title: "Communication & Web Work-Study", 
                 company: "Médical-Thiry", 
                 type: "work", 
                 period: "Sept 2022 - Sept 2023", 
@@ -541,9 +546,9 @@
                 desc: "Year-long work-study contract managing the 360° digital strategy for a leader in medical equipment distribution, balancing B2B professional needs with B2C customer service.", 
                 tasks: [
                     "Comprehensive Social Media Management and Community building across all platforms",
-                    "Daily management of the PrestaShop e-commerce platform (product updates, UX/UI)",
+                    "Daily management of the e-commerce platform (product updates, UX/UI)",
                     "Content strategy: SEO-optimized blog writing and technical product descriptions",
-                    "Design and deployment of monthly newsletters and targeted Google Ads campaigns",
+                    "Web development and article writing",
                     "Performance tracking and data analysis of digital marketing KPIs"
                 ], 
                 image: "mt.jpg" 
@@ -558,7 +563,7 @@
                 location: "Berlin, Germany", 
                 lat: 52.5200, 
                 lng: 13.4050, 
-                desc: "International marketing role in a high-growth cycling company in Berlin. Focused on building brand loyalty within the global vintage cycling community.", 
+                desc: "International, bilingual English/German marketing role in a high-growth cycling company in Berlin. Focused on building brand loyalty within the global vintage cycling community.", 
                 tasks: [
                     "Daily engagement for a global community of +170k followers on Instagram",
                     "Co-development of editorial calendars and visual content for international launches",
